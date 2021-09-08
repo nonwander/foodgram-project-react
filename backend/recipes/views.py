@@ -4,18 +4,16 @@ from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import (
-    IsAuthenticated, IsAuthenticatedOrReadOnly
-)
+from rest_framework.permissions import (IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 
 from .filters import RecipeFilter
 from .models import FavoriteRecipe, Ingredient, Recipe, ShoppingCart, Tag
 from .permissions import AuthorOrReadOnly
-from .serializers import (
-    FavoritedSerializer, IngredientSerializer, RecipeSerializer,
-    ShoppingCartSerializer, TagSerializer
-)
+from .serializers import (FavoritedSerializer, IngredientSerializer,
+                          RecipeSerializer, ShoppingCartSerializer,
+                          TagSerializer)
 
 
 class RecipeViewSet(viewsets.ModelViewSet):

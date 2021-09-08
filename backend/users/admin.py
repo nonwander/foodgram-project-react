@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from recipes.models import (
-    Ingredient, IngredientsRecipe, Recipe, Tag, TagsRecipe
-)
+from recipes.models import (Ingredient, IngredientsRecipe, Recipe, Tag,
+                            TagsRecipe)
 
 from .models import CustomUser, Follow
 
