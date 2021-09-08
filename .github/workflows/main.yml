@@ -22,7 +22,7 @@ jobs:
 
     - name: Test with flake8
       run: |
-        python -m flake8 --isort-show-traceback -v
+        python -m flake8
 
   build_backend:
     name: Push Docker backend image to Docker Hub
