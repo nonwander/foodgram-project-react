@@ -139,7 +139,7 @@ const RecipeEdit = ({ onEdit }) => {
               }
               const errors = Object.values(err)
               if (errors) {
-                alert(errors.join(', '))
+                alert(JSON.stringify(err))
               }
             })
         }}
