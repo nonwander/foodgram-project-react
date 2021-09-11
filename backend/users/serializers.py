@@ -1,5 +1,6 @@
-from djoser.serializers import \
+from djoser.serializers import (
     UserCreateSerializer as BaseUserRegistrationSerializer
+)
 from rest_framework import serializers, validators
 
 from recipes.models import Recipe

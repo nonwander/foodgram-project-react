@@ -31,7 +31,6 @@ class CustomUserViewSet(UserViewSet):
                 author=followed, user=follower).exists()
             )
             if subscribed is True:
-                print('subscribed = ', subscribed)
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             Follow.objects.get_or_create(
                 user=follower,
