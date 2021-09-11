@@ -6,7 +6,7 @@
 
 Проект доступен на адресе http://178.154.202.254/
 <br /> _Логин администратора:_
-<br /> _admin@fake.ru_
+<br /> _super@fake.ru_
 <br /> _Пароль администратора:_
 <br /> _f00dgram_
 
@@ -18,7 +18,7 @@
     Docker
 
 # Особенности
-    Проект запускается в трёх контейнерах [docker-compose](https://docs.docker.com/compose/install/) (nginx, PostgreSQL и Django):
+Проект запускается в трёх контейнерах [docker-compose](https://docs.docker.com/compose/install/) (nginx, PostgreSQL и Django):
 
 # Запуск проекта
 
