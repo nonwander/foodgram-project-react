@@ -21,6 +21,7 @@ urlpatterns = [
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(
         url_name='schema'), name='swagger-ui'
     ),
+    path('static/', include('about.urls', namespace='static')),
 ]
 
 if settings.DEBUG:

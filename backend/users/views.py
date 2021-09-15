@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 
@@ -16,6 +16,15 @@ User = CustomUser()
 class CustomUserViewSet(UserViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+
+    def get_permissions(self):
+        if self.action == "create":
+            permission_classes = [IsAuthenticated]
+        elif self.action == "actioned":
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [AllowAny]
+        return [permission() for permission in permission_classes]
 
     @action(
         detail=True,
