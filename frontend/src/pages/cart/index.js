@@ -1,9 +1,10 @@
-import { PurchaseList, Title, Container, Main, Button } from '../../components'
+import { PurchaseList, Title, Container, Form, Main, Button } from '../../components'
 import styles from './styles.module.css'
 import { useRecipes } from '../../utils/index.js'
 import { useEffect, useState } from 'react'
 import api from '../../api'
 import MetaTags from 'react-meta-tags'
+import { Link } from 'react-router-dom'
 
 const Cart = ({ updateOrders, orders }) => {
   const {
@@ -47,10 +48,24 @@ const Cart = ({ updateOrders, orders }) => {
           handleRemoveFromCart={handleAddToCart}
           updateOrders={updateOrders}
         />
-        {orders > 0 && <Button
-          modifier='style_dark-blue'
-          clickHandler={downloadDocument}
-        >Скачать список</Button>}
+        {(orders > 0) ? (
+          <Button
+            modifier='style_dark-blue'
+            clickHandler={downloadDocument}
+          >Скачать список</Button>
+        ) : (
+          <Form className={styles.form}>
+            <label>
+            Ваша корзина пуста. Хотите перейти к списку рецептов?</label>
+            <br />
+            <br />
+            <Link to='/recipes'>
+              <Button
+                modifier='style_dark-blue'
+              >На главную</Button>
+            </Link>
+          </Form>
+        )}
       </div>
     </Container>
   </Main>

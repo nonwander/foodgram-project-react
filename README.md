@@ -18,7 +18,11 @@
     Docker
 
 # Особенности
-    Проект запускается в трёх контейнерах [docker-compose](https://docs.docker.com/compose/install/) (nginx, PostgreSQL и Django):
+    Проект запускается в четырёх контейнерах [docker-compose](https://docs.docker.com/compose/install/) 
+<br /> _- nginx: infra_nginx_1_
+<br /> _- PostgreSQL: infra_db_1_
+<br /> _- Django Backend: infra_web_1_
+<br /> _- Frontend: infra_frontend_1_
 
 # Запуск проекта
 

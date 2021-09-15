@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Switch, Route, useHistory, Redirect, useLocation } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Header, Footer, ProtectedRoute } from './components'
 import api from './api'
 import styles from './styles.module.css'
@@ -9,6 +9,8 @@ import cn from 'classnames'
 import hamburgerImg from './images/hamburger-menu.png'
 
 import {
+  About_author,
+  About_tech,
   Main,
   Cart,
   SignIn,
@@ -182,11 +184,10 @@ function App() {
         </div>
         <Header orders={orders} loggedIn={loggedIn} onSignOut={onSignOut} />
         <Switch>
-          <ProtectedRoute
+          <Route
             exact
             path='/user/:id'
             component={User}
-            loggedIn={loggedIn}
             updateOrders={updateOrders}
           />
           <ProtectedRoute
@@ -234,6 +235,13 @@ function App() {
             onPasswordChange={changePassword}
           />
 
+          <Route exact path='/static/author'
+            component={About_author}
+          />
+          <Route exact path='/static/tech'
+            component={About_tech}
+          />
+
           <Route
             exact
             path='/recipes/:id'
@@ -264,6 +272,9 @@ function App() {
           </Route>
           <Route path='/'>
             {loggedIn ? <Redirect to='/recipes' /> : <Redirect to='/signin'/>}
+          </Route>
+          <Route exact path='/about/author'>
+            component={Favorites}
           </Route>
         </Switch>
         <Footer />

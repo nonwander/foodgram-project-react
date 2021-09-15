@@ -60,6 +60,11 @@ const RecipeCreate = ({ onEdit }) => {
     recipeFile === null
   }
 
+  var keys_dict_error = new Map([
+    ['ingredients', 'Ингредиенты'],
+    ['cooking_time', 'Время приготовления']
+  ])
+
   return <Main>
     <Container>
       <MetaTags>
@@ -95,7 +100,19 @@ const RecipeCreate = ({ onEdit }) => {
             }
             const errors = Object.values(err)
             if (errors) {
-              alert(errors.join(', '))
+              let err_messages = [];
+              Object.entries(err).map(([key, val]) => {
+                Object.entries(val).map(([sub_key, sub_val]) => {
+                  if (sub_val.hasOwnProperty('amount')) {
+                    Object.entries(sub_val).map(([deep_key, deep_val]) => {          
+                      err_messages.push(`${keys_dict_error.get(key)}: ${deep_val}`)
+                    })
+                  }
+                  else if (Object.keys(sub_val).length) {
+                    err_messages.push(`${keys_dict_error.get(key)}: ${sub_val}`)}
+                })
+              })
+              alert(err_messages.join(';\n'))
             }
           })
         }}

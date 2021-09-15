@@ -1,3 +1,5 @@
+import About_author from './about_author'
+import About_tech from './about_tech'
 import Main from './main'
 import SignIn from './signin'
 import SignUp from './signup'
@@ -11,6 +13,8 @@ import User from './user'
 import ChangePassword from './change-password'
 
 export {
+  About_author,
+  About_tech,
   Main,
   SignIn,
   SingleCard,

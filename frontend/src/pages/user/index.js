@@ -14,7 +14,7 @@ import { useRecipes } from '../../utils/index.js'
 import { useEffect, useState, useContext } from 'react'
 import api from '../../api'
 import { useParams, useHistory } from 'react-router-dom'
-import { UserContext } from '../../contexts'
+import { UserContext, AuthContext } from '../../contexts'
 import MetaTags from 'react-meta-tags'
 
 const UserPage = ({ updateOrders }) => {
@@ -36,6 +36,7 @@ const UserPage = ({ updateOrders }) => {
   const [ subscribed, setSubscribed ] = useState(false)
   const history = useHistory()
   const userContext = useContext(UserContext)
+  const authContext = useContext(AuthContext)
 
   const getRecipes = ({ page = 1, tags }) => {
     api
@@ -91,7 +92,7 @@ const UserPage = ({ updateOrders }) => {
         />
         <CheckboxGroup values={tagsValue} handleChange={handleTagsChange} />
       </div>
-      {(userContext || {}).id !== (user || {}).id && <Button
+      {(userContext || {}).id !== (user || {}).id && authContext && <Button
         className={styles.buttonSubscribe}
         clickHandler={_ => {
           const method = subscribed ? api.deleteSubscriptions.bind(api) : api.subscribe.bind(api) 
