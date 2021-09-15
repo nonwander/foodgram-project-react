@@ -69,7 +69,9 @@ jobs:
             sudo docker pull 64286/foodgram_frontend 
             sudo docker-compose stop
             sudo docker-compose rm web
-            touch .env 
+            touch .env
+            echo SENTRY_DNS=${{ secrets.SENTRY_DNS }} >> .env
+            echo DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }} >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
             echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
