@@ -1,26 +1,17 @@
 import os
 
 import environ
-import sentry_sdk
-
-from sentry_sdk.integrations.django import DjangoIntegration
 
 
-sentry_sdk.init(
-    dsn=os.environ.get('SENTRY_DNS'), 
-    integrations=[DjangoIntegration()],
-)
 env = environ.Env()
 environ.Env.read_env()
-
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-SECRET_KEY = '4md+477g=z^93@4bvvu4qzpgsrsgg^hh9+kt=b#jxm2ww*$npd'
-#SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -92,8 +83,12 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'DB_ENGINE',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
