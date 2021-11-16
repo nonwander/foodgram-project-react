@@ -18,9 +18,9 @@ class CustomUserViewSet(UserViewSet):
     serializer_class = CustomUserSerializer
 
     def get_permissions(self):
-        if self.action == "create":
+        if self.action == 'create':
             permission_classes = [IsAuthenticated]
-        elif self.action == "actioned":
+        elif self.action == 'actioned':
             permission_classes = [IsAuthenticated]
         else:
             permission_classes = [AllowAny]

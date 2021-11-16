@@ -1,5 +1,6 @@
 import traceback
 
+from django.db import IntegrityError
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
@@ -101,10 +102,13 @@ class RecipeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         context = self.context['request']
         ingredients = validated_data.pop('recipe_ingredients')
-        recipe = Recipe.objects.create(
-            **validated_data,
-            author=self.context.get('request').user
-        )
+        try:
+            recipe = Recipe.objects.create(
+                **validated_data,
+                author=self.context.get('request').user
+            )
+        except IntegrityError as err:
+            pass
         tags_set = context.data['tags']
         for tag in tags_set:
             TagsRecipe.objects.create(
